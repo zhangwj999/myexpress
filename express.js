@@ -1,9 +1,16 @@
 var express = require('express');
 var app = express();
 var Config = require( './config' )
+var Utils = require( './utils' )
 var fs = require( 'fs' )
 
 app.post('/uploadImg', function(req, res) {
+
+  var exists = fs.existsSync( Config.IMG_ROOT )
+  if( !exists ){
+    Utils.mkdirsSync( Config.IMG_ROOT )
+  }
+
   var nt = ( new Date() ).getTime();
   var fileWriteStream = fs.createWriteStream( `${Config.IMG_ROOT}${nt}.jpeg` );
   req.pipe( fileWriteStream )
@@ -12,6 +19,7 @@ app.post('/uploadImg', function(req, res) {
     ok:true,
     data:`${Config.IMG_ROOT}${nt}.jpeg`
   })
+
 });
 
 app.get('/', function (req, res) {
