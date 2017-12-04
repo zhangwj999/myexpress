@@ -1,3 +1,6 @@
+var fs = require( 'fs' )
+var path = require('path');
+
 //创建多层文件夹 同步
 exports.mkdirsSync = function mkdirsSync(dirpath) { 
     if (!fs.existsSync(dirpath)) {
@@ -5,8 +8,7 @@ exports.mkdirsSync = function mkdirsSync(dirpath) {
         dirpath.split( '/' ).forEach(function(dirname) {
             if (pathtmp) {
                 pathtmp = path.join(pathtmp, dirname);
-            }
-            else {
+            }else {
                 pathtmp = dirname;
             }
             if (!fs.existsSync(pathtmp)) {

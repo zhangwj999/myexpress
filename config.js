@@ -1,1 +1,1 @@
-exports.IMG_ROOT = 'D://apacheDoc/LHMH_Rec/tmp/'
+exports.IMG_ROOT = 'D:/apacheDoc/LHMH_Rec/tmp/'
